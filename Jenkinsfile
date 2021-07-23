@@ -2,13 +2,6 @@ node('build-slave') {
     try {
         
             stage('Checkout') {
-                if (!env.hub_org) {
-                    println( "Uh Oh! Please set a Jenkins environment variable named hub_org with value as registery/sunbidrded" )
-                    error 'Please resolve the errors and rerun..'
-                } else
-                    println( "Found environment variable named hub_org with value as: " )
-            }
-
             cleanWs()            
             checkout scm
             commit_hash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
