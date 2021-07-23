@@ -4,7 +4,8 @@ node('build-slave') {
             stage('Checkout') {
             cleanWs()            
             checkout scm
-            build_tag = sh(script: "echo " + params.github_release_tag.split('/')[-1]).trim()
+            commit_hash = sh(script: 'git rev-parse --short HEAD', returnStdout: true)
+            build_tag = sh(script: "echo " + params.github_release_tag.split('/')[-1])
             echo "build_tag: " + build_tag
          }
     }
