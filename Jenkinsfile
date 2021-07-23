@@ -3,10 +3,10 @@ node('build-slave') {
         ansiColor('xterm') {
             stage('Checkout') {
                 if (!env.hub_org) {
-                    println(ANSI_BOLD + ANSI_RED + "Uh Oh! Please set a Jenkins environment variable named hub_org with value as registery/sunbidrded" + ANSI_NORMAL)
+                    println( "Uh Oh! Please set a Jenkins environment variable named hub_org with value as registery/sunbidrded" )
                     error 'Please resolve the errors and rerun..'
                 } else
-                    println(ANSI_BOLD + ANSI_GREEN + "Found environment variable named hub_org with value as: " + hub_org + ANSI_NORMAL)
+                    println( "Found environment variable named hub_org with value as: " )
             }
 
             cleanWs()            
