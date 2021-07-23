@@ -1,6 +1,6 @@
 node('build-slave') {
     try {
-        ansiColor('xterm') {
+        
             stage('Checkout') {
                 if (!env.hub_org) {
                     println( "Uh Oh! Please set a Jenkins environment variable named hub_org with value as registery/sunbidrded" )
@@ -14,7 +14,6 @@ node('build-slave') {
             commit_hash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
             build_tag = sh(script: "echo " + params.github_release_tag.split('/')[-1] + "_" + commit_hash + "_" + env.BUILD_NUMBER, returnStdout: true).trim()
             echo "build_tag: " + build_tag
-        }
     }
     catch (err) {
         currentBuild.result = "FAILURE"
