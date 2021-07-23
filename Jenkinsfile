@@ -15,9 +15,9 @@ node('build-slave') {
             build_tag = sh(script: "echo " + params.github_release_tag.split('/')[-1] + "_" + commit_hash + "_" + env.BUILD_NUMBER, returnStdout: true).trim()
             echo "build_tag: " + build_tag
         }
+    }
     catch (err) {
         currentBuild.result = "FAILURE"
         throw err
     }
-}
 }
